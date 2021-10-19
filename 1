@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace dz
+{
+   public  class Triangle : Form1
+    {
+        private double a, b, c;
+        public double getA() { return a; }
+        public double getB() { return b; }
+        public double getC() { return c; }
+        public Triangle(double a, double b, double c)
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            
+
+        }
+      
+    }
+        public class EqualTriangle : Triangle
+        {
+          private  double area, per;
+        public double getArea() { return area; }
+        public double getPer() { return per; }
+            public EqualTriangle(double a, double b, double c) : base(a, b, c)
+            {
+            per = (a + b + c) / 2;
+            area = Math.Sqrt(per * (per - a) * (per - b) * (per - c));
+            MessageBox.Show("Result " + per + " " + area);
+
+        }
+           
+
+        }
+    
+}
+Form.cs//
+  private void button1_Click(object sender, EventArgs e)
+        {
+
+            Triangle tr = new EqualTriangle(4, 2, 3);
+           
+
+            
+
+        }
