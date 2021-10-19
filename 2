@@ -1,0 +1,147 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Dz2
+{
+    abstract class Figure
+    {
+        public abstract double area();
+        public abstract double per();
+        public abstract string str();
+        
+
+
+       
+        public void Result()
+        {
+            string sss = "Result :" + area()+ " " + per()+ " " + str();
+            MessageBox.Show(sss);
+
+
+        }
+    }
+    class Triangle : Figure
+    {
+       public  double a, b, c, p, s;
+       
+        public Triangle(double a, double b, double c) 
+        {
+
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            
+            
+
+
+        }
+        public override double area()
+        {
+            return (s = (a * b) / 2);
+        }
+        public override double per()
+        {
+            return (p = (a + b + c));
+
+        }
+        public override string str()
+        {
+            return ("Triangle");
+        }
+    }
+    class Rectangle : Figure
+    {
+         double  a,b,c, s;
+        public Rectangle(double a, double b, double c) 
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+        public override double area()
+        {
+            return (s = a * b);
+        }
+        public override double per()
+        {
+            return ((a + b) / 2);
+        }
+        public override string str()
+        {
+            return ("Rectangle");
+        }
+    }
+    class Circle : Figure
+    {
+        private double  p, s;
+        public Circle(double p) 
+        {
+
+            this.p = p;
+
+
+        }
+        public override double area()
+        {
+            return (s = 3.14 * Math.Pow(p, 2));
+        }
+        public override double per()
+        {
+            return 0;
+        }
+        public override string str()
+        {
+            return ("Circle");
+        }
+    }
+    class Rhombus : Figure
+    {
+
+        double s, b, c;
+        public Rhombus(double b, double c) 
+        {
+            
+            this.b = b;
+            this.c = c;
+
+        }
+        public override double area()
+        {
+            return (s = b * c / 2);
+        }
+        public override double per()
+        {
+            return (s = 4 * b);
+        }
+        public override string str()
+        {
+            return ("Rhombus");
+        }
+    }
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Figure fg = new Triangle(2, 2, 2);
+            Figure re = new Rectangle(2, 2, 2);
+            Figure cr = new Circle(2);
+            Figure rh = new Rhombus(2, 2);
+            fg.Result();
+            re.Result();
+            cr.Result();
+            rh.Result();
+        }
+    }
+}
