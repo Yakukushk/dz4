@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace dz3
+{
+    abstract class Triangle
+    {
+        private double a, b, c;
+        public double getA() { return a; }
+        public double getB() { return b; }
+        public double getCos() { return c; }
+        public void setA(double x) { this.a = x; }
+        public void setB(double x) { this.b = x; }
+        public void setCos(double x) { this.c = x; }
+        public Triangle(double a, double b, double c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+        
+        public abstract double getPerimeter();
+        public abstract double getArea();
+        public void Result() {
+            MessageBox.Show("per: " + Convert.ToString(getPerimeter()) + "\n area: " + Convert.ToString(getArea()));
+        }
+    }
+
+class RightTriangle : Triangle
+{
+        double a, b, c;
+    public RightTriangle(double a, double b) : base(a, b, Math.PI / 2) {
+            this.a = getA();
+            this.b = getB();
+            this.c = getCos();
+
+    }
+        public override double getPerimeter()
+        {
+            return ( a + b + Math.Sqrt(a * a + b * b - 2 * a * b * Math.Cos(c)));
+        }
+        public override double getArea()
+        {
+            return ( a * b * (Math.Sin(c)) / 2);
+        }
+
+
+    }
+
+
+class EqTriangle : Triangle
+{
+        double a, b, c;
+    public EqTriangle(double a, double cos) : base(a, a, cos) {
+            this.a = getA();
+            this.b = getB();
+            this.c = getCos();
+        }
+        public override double getPerimeter()
+        {
+            return (a + b + Math.Sqrt(a * a + b * b - 2 * a * b * Math.Cos(c)));
+        }
+        public override double getArea()
+        {
+            return (a * b * (Math.Sin(c)) / 2);
+        }
+    }
+}
+//Form.cs
+private void button1_Click(object sender, EventArgs e)
+        {
+            Triangle eq = new EqTriangle(10, Math.PI / 3);
+            Triangle rg = new RightTriangle(3, 4);
+            eq.Result();
+            rg.Result();
+        }
